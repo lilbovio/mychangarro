@@ -24,9 +24,22 @@ function Login() {
         {/* Aquí va tu imagen */}
       </div>
       <form onSubmit={handleSubmit} className={styles.loginForm}>
-        <input type="text" placeholder="Usuario" onChange={e => setForm({ ...form, username: e.target.value })} />
-        <input type="password" placeholder="Contraseña" onChange={e => setForm({ ...form, password: e.target.value })} />
+        <input
+          type="text"
+          placeholder="Usuario"
+          onChange={e => setForm({ ...form, username: e.target.value })}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Contraseña"
+          onChange={e => setForm({ ...form, password: e.target.value })}
+          required
+        />
         <button type="submit">Iniciar sesión</button>
+        <button type="button" onClick={() => navigate('/register')}>
+          ¿No tienes cuenta? Regístrate
+        </button>
       </form>
     </div>
   );
