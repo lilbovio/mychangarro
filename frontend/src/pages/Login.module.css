@@ -9,7 +9,7 @@
   
   .imageSection {
     flex: 1;
-    background: url('@assets/login-bg.jpg') no-repeat center center;
+    background: url('../assets/login_img.jpg') no-repeat center center;
     background-size: cover;
     position: relative;
   }
@@ -90,9 +90,6 @@
     color: #3498db;
   }
 
-  .imageSection{
-    background-image: url('../assets/login_img.jpg');
-  }
   
   /* Efectos adicionales */
   .loginForm {
