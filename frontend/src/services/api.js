@@ -16,8 +16,7 @@ export const updateProfile = (token, userId, formData) => {
     body: formData,
     headers: {
       'Authorization': `Bearer ${token}`,
-      // fetch establece Content-Type a multipart/form-data automáticamente con FormData
-      'X-User-ID': userId  // Incluye el User ID en el header
+      'X-User-ID': userId 
     }
   });
 };
