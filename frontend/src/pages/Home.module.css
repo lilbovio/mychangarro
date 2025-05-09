@@ -1,0 +1,118 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .userInfo {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .userImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+  }
+  
+  .userDetails h2 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+  
+  .userDetails p {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
+  }
+  
+  .categorySelector {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  .categoryButton {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 30px;
+    background-color: #e9ecef;
+    color: #495057;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .categoryButton:hover {
+    background-color: #dee2e6;
+  }
+  
+  .categoryButton.active {
+    background-color: #4dabf7;
+    color: white;
+  }
+  
+  .businessList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .noResults {
+    text-align: center;
+    grid-column: 1 / -1;
+    color: #6c757d;
+    font-size: 1.2rem;
+  }
+  
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  .loadingSpinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(77, 171, 247, 0.3);
+    border-radius: 50%;
+    border-top-color: #4dabf7;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .userInfo {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+    
+    .categorySelector {
+      justify-content: center;
+    }
+    
+    .businessList {
+      grid-template-columns: 1fr;
+    }
+  }

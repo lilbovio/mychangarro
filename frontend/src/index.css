@@ -1,60 +1,195 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* src/pages/index.css */
+
+/* Estilos base */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Contenedor principal */
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sección de información del usuario */
+.user-info {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-info img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+}
+
+.user-info h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.user-info p {
+  margin: 0.5rem 0 0;
+  opacity: 0.9;
+}
+
+/* Selector de categorías */
+.category-selector {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.category-selector button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  background-color: #e9ecef;
+  color: #495057;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-selector button:hover {
+  background-color: #dee2e6;
+}
+
+.category-selector button.active {
+  background-color: #4dabf7;
+  color: white;
+}
+
+/* Lista de negocios */
+.business-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
   }
   
-  /* Fuente base y fondo general */
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+  .category-selector {
+    justify-content: center;
   }
   
-  /* Enlaces sin subrayado estanap */
-  a {
-    text-decoration: none;
-    color: inherit;
+  .business-list {
+    grid-template-columns: 1fr;
   }
-  
-  /* Imágenes responsivas */
-  img {
-    max-width: 100%;
-    height: auto;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  /* Contenedor principal */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Botones base */
-  button {
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border: none;
-    background-color: #952deb;
-    color: rgb(35, 233, 45);
-    border-radius: 4px;
-    transition: background-color 0.2s ease-in-out;
+}
+
+.business-list > * {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Efecto de carga */
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(77, 171, 247, 0.3);
+  border-radius: 50%;
+  border-top-color: #4dabf7;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
-  button:hover {
-    background-color: #005fa3;
-  }
-  
-  /* Inputs base */
-  input, textarea, select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-  }
-  
-  
+}
+
+.header .logo {
+  height: 40px;
+  width: auto;
+  margin-right: 1rem;
+}
+
+.footer img {
+  height: 30px;
+  margin: 0 auto;
+  display: block;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.menu-container {
+  position: relative;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 100;
+  min-width: 200px;
+}
+
+.menu-item {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.menu-item:hover {
+  background: #f5f5f5;
+}
