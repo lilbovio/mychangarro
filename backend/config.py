@@ -1,7 +1,7 @@
 DB_CONFIG = {
     "host": "localhost",
-    "user": "root",
-    "password": "Bovio123",
+    "user": "",
+    "password": "",
     "database": "negocios_db"
 }
 
