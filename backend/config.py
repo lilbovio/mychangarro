@@ -4,3 +4,5 @@ DB_CONFIG = {
     "password": "Bovio123",
     "database": "negocios_db"
 }
+
+# modificar en caso de ejecutar localhost

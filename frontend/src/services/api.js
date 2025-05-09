@@ -1,9 +1,7 @@
 import axios from 'axios';
-
 const API = axios.create({
   baseURL: 'http://localhost:5000/api'
 });
-
 export const login = (credentials) => API.post('/login', credentials);
 export const getBusinesses = (categoria) => API.get(`/businesses?category=${categoria}`);
 export const submitReview = (data) => API.post('/reviews', data);
