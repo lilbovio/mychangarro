@@ -5,7 +5,7 @@ businesses = Blueprint('businesses', __name__)
 
 @businesses.route('/businesses', methods=['GET'])
 def list_businesses():
-    category = request.args.get('category')
+    category = request.args.get('categoria')
     if category:
         data = get_businesses_by_category(category)
     else:

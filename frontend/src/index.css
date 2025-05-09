@@ -12,7 +12,7 @@
     color: #333;
   }
   
-  /* Enlaces sin subrayado */
+  /* Enlaces sin subrayado estanap */
   a {
     text-decoration: none;
     color: inherit;
@@ -36,8 +36,8 @@
     cursor: pointer;
     padding: 0.5rem 1rem;
     border: none;
-    background-color: #0077cc;
-    color: white;
+    background-color: #952deb;
+    color: rgb(35, 233, 45);
     border-radius: 4px;
     transition: background-color 0.2s ease-in-out;
   }
@@ -56,4 +56,5 @@
     margin-bottom: 1rem;
     font-size: 1rem;
   }
+  
   
