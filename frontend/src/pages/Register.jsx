@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Register() {
-  const [form, setForm] = useState({ username: '', password: '' });
+  const [form, setForm] = useState({ usuario: '', contrasena: '' });
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -23,13 +23,13 @@ function Register() {
       <input
         type="text"
         placeholder="Usuario"
-        onChange={(e) => setForm({ ...form, username: e.target.value })}
+        onChange={(e) => setForm({ ...form, usuario: e.target.value })}
         required
       />
       <input
         type="password"
         placeholder="Contraseña"
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
+        onChange={(e) => setForm({ ...form, contrasena: e.target.value })}
         required
       />
       <button type="submit">Registrarse</button>

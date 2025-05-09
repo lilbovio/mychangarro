@@ -4,7 +4,7 @@ import { login } from '../services/api';
 import styles from './Login.module.css'; // crea estilos si deseas
 
 function Login() {
-  const [form, setForm] = useState({ username: '', password: '' });
+  const [form, setForm] = useState({ usuario: '', contrasena: '' });
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -27,13 +27,13 @@ function Login() {
         <input
           type="text"
           placeholder="Usuario"
-          onChange={e => setForm({ ...form, username: e.target.value })}
+          onChange={e => setForm({ ...form, usuario: e.target.value })}
           required
         />
         <input
           type="password"
           placeholder="Contraseña"
-          onChange={e => setForm({ ...form, password: e.target.value })}
+          onChange={e => setForm({ ...form, contrasena: e.target.value })}
           required
         />
         <button type="submit">Iniciar sesión</button>
