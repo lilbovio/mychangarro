@@ -1,9 +1,9 @@
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://tu-backend.onrender.com/api'
+  baseURL: 'https://mychangarro.onrender.com/api'
 });
 
 export const login = (credentials) => API.post('/login', credentials);
-export const getBusinesses = (categoria) => API.get(`/businesses?categoria=${categoria}`); // Corrección del parámetro
+export const getBusinesses = (categoria) => API.get(`/businesses?categoria=${categoria}`);
 export const submitReview = (data) => API.post('/reviews', data);
 export const register = (credentials) => API.post('/register', credentials);
 
@@ -17,3 +17,4 @@ export const updateProfile = (token, userId, formData) => {
     }
   });
 };
+
