@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Profile.module.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { updateProfile } from '../services/api'; // Importa la función
+
 
 function Profile() {
 const [user, setUser] = useState({

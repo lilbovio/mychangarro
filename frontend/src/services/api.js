@@ -5,7 +5,7 @@ const API = axios.create({
 });
 
 export const login = (credentials) => API.post('/login', credentials);
-export const getBusinesses = (category) => API.get(`/businesses?category=${category}`);
+export const getBusinesses = (categoria) => API.get(`/businesses?category=${categoria}`);
 export const submitReview = (data) => API.post('/reviews', data);
 export const register = (credentials) => API.post('/register', credentials);
 

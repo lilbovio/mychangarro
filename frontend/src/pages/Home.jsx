@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BusinessCard from '../components/BusinessCard';
 import styles from './Home.module.css'; 
+import defaultUserImage from '../assets/default-user.jpg';
 
 function Home() {
   const user = JSON.parse(localStorage.getItem('user')) || {};
@@ -22,11 +23,12 @@ function Home() {
     try {
       const res = await getBusinesses(category);
       console.log('Businesses data:', res.data); // Para depuración
+      res.data.forEach(business => console.log(business));
       if (res.data && Array.isArray(res.data)) {
         setBusinesses(res.data);
       } else {
         console.error('Formato de datos inesperado:', res);
-        setBusinesses([]);
+        setBusinesses([]);  
       }
     } catch (error) {
       console.error("Error loading businesses:", error);
@@ -40,14 +42,14 @@ function Home() {
     <div className={styles.container}>
       <Header />
       
-      <div className={styles.userInfo}>
+      <div className={styles.userInfo}> 
         <img 
-          src={user.image_url || '/default-user.jpg'} 
+          src={user.image_url || defaultUserImage} 
           alt="User profile" 
           className={styles.userImage}
           onError={(e) => {
             e.target.onerror = null; 
-            e.target.src = '/default-user.jpg'; // Ruta de la imagen por defecto
+            e.target.src = defaultUserImage; // Ruta de la imagen por defecto
           }}
         />
         <div className={styles.userDetails}>

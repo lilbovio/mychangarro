@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { submitReview } from '../services/api';
 import styles from './Reviews.module.css'; // Importa el módulo CSS
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function BusinessReview() {
   const { id } = useParams();
@@ -31,6 +33,7 @@ function BusinessReview() {
 
   return (
     <div className={styles.reviewsContainer}>
+      <Header />
       <h2 className={styles.reviewsTitle}>Deja tu reseña</h2>
       
       <form onSubmit={handleSubmit} className={styles.reviewForm}>
@@ -79,6 +82,7 @@ function BusinessReview() {
           Enviar reseña
         </button>
       </form>
+      <Footer />
     </div>
   );
 }
