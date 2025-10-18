@@ -69,13 +69,10 @@ const [user, setUser] = useState({
   
       const data = await response.json();
       if (response.ok) {
-        // Actualizar el usuario en el localStorage
         localStorage.setItem('user', JSON.stringify(data.user));
-        // Mostrar mensaje de éxito
-        navigate('/profile'); // Redirige al perfil actualizado
+        navigate('/profile'); 
       } else {
         console.error("Error al actualizar el perfil:", data);
-        // Mostrar mensaje de error al usuario
         alert('Hubo un error al actualizar el perfil. Por favor, inténtalo de nuevo.');
       }
     } catch (error) {

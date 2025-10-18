@@ -7,5 +7,6 @@ app = create_app()
 CORS(app)
 
 if __name__ == '__main__':
-    port = int(os.getenv("PORT", 5000))  # Usa el puerto de Render si está disponible
-    app.run(host="0.0.0.0", port=port, debug=False)
+    app.run(debug=True)
+
+# hola cp como estamos
