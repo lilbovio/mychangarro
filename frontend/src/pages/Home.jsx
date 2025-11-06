@@ -41,7 +41,6 @@ function Home() {
   return (
     <div className={styles.container}>
       <Header />
-      
       <div className={styles.userInfo}> 
         <img 
           src={user.image_url || defaultUserImage} 

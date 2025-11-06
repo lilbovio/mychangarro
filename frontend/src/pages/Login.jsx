@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/api';
-import styles from './Login.module.css'; // crea estilos si deseas
+import styles from './Login.module.css'; 
+import logo from "../assets/logo.png";
+
 
 function Login() {
   const [form, setForm] = useState({ usuario: '', contrasena: '' });
@@ -24,6 +26,10 @@ function Login() {
         {/* Aquí va tu imagen */}
       </div>
       <form onSubmit={handleSubmit} className={styles.loginForm}>
+        <div className={styles.tittleContainer}><h1 className={styles.tittle}><span className={styles.spanmorado}>Mi</span><span className={styles.spanverde}>C</span>hangarro</h1></div>
+        <div className={styles.logoContainer}>
+        <img src={logo} alt="Logo" className={styles.logo} /> {/*  AQUI PUSE EL LOGO DENTRO DEL FORM */}
+      </div>
         <input
           type="text"
           placeholder="Usuario"

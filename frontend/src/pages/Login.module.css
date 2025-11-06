@@ -6,10 +6,45 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   }
+
+.tittleContainer{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
+}
+
+.tittle{
+  font-size: 30px;
+  color: #000000;
+}
+
+.spanmorado{
+  color: #8b29b9;
+}
+
+.spanverde{
+  color: #40C758;
+}
+
+  .logoContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 0.2rem;
+}
+
+.logo {
+  width: 200px;      /* Ajusta el tamaño a gusto */
+  height: 200px;
+  object-fit: contain;
+  margin: auto;
+}
+
   
   .imageSection {
     flex: 1;
-    background: url('../assets/login_img.jpg') no-repeat center center;
+    background: url('../assets/señoraLogin.jpg') no-repeat center center #000000;
     background-size: cover;
     position: relative;
   }
@@ -52,30 +87,32 @@
   }
   
   .loginForm input:focus {
-    border-color: #3498db;
+    border-color: #40C758;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
     outline: none;
   }
   
   .loginForm button[type="submit"] {
-    background-color: #3498db;
+    background-color: #40C758;
     color: white;
     padding: 1rem;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     margin-bottom: 1rem;
   }
   
   .loginForm button[type="submit"]:hover {
-    background-color: #2980b9;
+    border:1px solid #40C758;
+    color: #40C758;
   }
+  
   
   .loginForm button[type="button"] {
     background-color: transparent;
-    color: #7f8c8d;
+    color: #fff;
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -86,8 +123,8 @@
   
   .loginForm button[type="button"]:hover {
     background-color: #f8f9fa;
-    border-color: #3498db;
-    color: #3498db;
+    border-color: #40C758;
+    color: #40C758;
   }
 
   
