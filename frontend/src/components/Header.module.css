@@ -1,0 +1,146 @@
+/* *VOVIO AQUI MODIFIQUE EL HOME Y LE PUSE UNA BARRA SUPERIOR */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: #fff;
+  box-sizing: content-box;
+  box-shadow: 0 2px 10px #999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+
+
+.navleft { /* *vovio aqui ES EL CP IZQUIERDO  */
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navleft img { 
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.navleft h3 {
+  margin: 0;
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.morado{
+    color: #8b29b9;
+}
+
+.verde{
+    color: #40C758;
+}
+
+.navright {     /* * Y AQUI COMIENZA EL CP DERECHO */
+  display: flex;
+  align-items: center;
+  gap: 50px; /* ? no me acordaba como separar los elementos por columnas FF */
+}
+
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 25px;
+  padding: 5px 15px;
+  transition: all 0.3s ease;
+}
+
+.searchForm:focus-within {
+  background: #ebebeb;
+  box-shadow: 0 0 0 2px rgba(139, 41, 185, 0.2);
+}
+
+.searchInput {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent;
+  padding: 8px 12px;
+  font-size: 14px;
+  outline: none;
+  width: 300px;
+}
+
+.searchInput::placeholder {
+  color: #999;
+}
+
+        /* !=====================Botones de login y registro ARRIBA EL CEPES===========*/
+.loginButton a, .registerButton a {   /* aqui sus contenedores  */   
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px 30px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: block;
+}
+
+.loginButton a:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #000 0%, #8b29b8 100%)
+}
+
+.loginButton a,.registerButton a {
+  background: linear-gradient(135deg, #000 0%, #8b29b8 100%);
+  color: #000;
+  font-weight: 700;
+}
+
+.registerButton a:hover {
+  background: linear-gradient(135deg, #000 0%, #8b29b8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #8b29b9;
+  color: #fff;
+}
+
+
+@media (max-width: 768px) { /* *Parte responsiva de mycpgarro */
+  .header {
+    padding: 0 15px;
+    height: auto;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .navleft h3 {
+    font-size: 20px;
+  }
+
+  .navleft img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .navright {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .searchInput {
+    width: 120px;
+    font-size: 13px;
+  }
+
+  .loginButton a, .registerButton a {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}

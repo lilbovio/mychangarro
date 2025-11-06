@@ -1,36 +1,38 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '@/assets/logo.png';
+import styles from './Header.module.css'; 
+
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
 
   return (
-    <header className="header">
+    <header className={styles.header}>
+      <div className={styles.navleft}>
       <img src={logo} alt="Logo" className="logo" />
-      <h1>MiApp</h1>
-      <div className="menu-container">
-        <button 
-          className="menu-button"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          ☰
-        </button>
-        
-        {isMenuOpen && (
-          <div className="dropdown-menu">
-            <Link to="/home" className="menu-item" onClick={() => setIsMenuOpen(false)}>
-              Inicio
-            </Link>
-            <Link to="/review" className="menu-item" onClick={() => setIsMenuOpen(false)}>
-              Reseñas
-            </Link>
-            <Link to="/profile" className="menu-item" onClick={() => setIsMenuOpen(false)}>
-              Mi Perfil
-            </Link>
-          </div>
-        )}
+      <h3><span className={styles.morado}>Mi</span><span className={styles.verde}>C</span>hangarro</h3>
       </div>
+      <div className={styles.navright}>
+      <form className={styles.searchForm}>
+      <input 
+            type="text" 
+            placeholder="Buscar" 
+            className={styles.searchInput}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </form>
+        <div className={styles.loginButton}>
+        <Link to="" className="nav-link">Login</Link>
+        </div>
+        <div className={styles.registerButton}>
+        <Link to="/register" className="nav-link nav-link-register">Register</Link>
+        </div>
+      </div>
+      
     </header>
   );
 }

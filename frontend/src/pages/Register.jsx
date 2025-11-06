@@ -23,13 +23,13 @@ function Register() {
     <div>
       <nav className={style.navBar}>
         <div className={style.navLogo} onClick={() => navigate('/')}>
-          <img src={home} alt="" />
-          <span>Home</span>
+          <img className={style.imgHome} src={home} alt="" />
+          <span><span className={style.morado}>Mi</span><span className={style.verde}>C</span>hangarro</span>
         </div>
         <div className={style.navBrand}><span className={style.morado}>Mi</span><span className={style.verde}>C</span>hangarro</div>
       </nav>  
       <div className={style.registerContainer}>
-        <form onSubmit={handleSubmit}>
+        <form className={style.formularioRegister} onSubmit={handleSubmit}>
           <h2 className={style.tittleRegister}><span className={style.morado}>Re</span><span className={style.verde}>g</span>istro</h2>
           <p className={style.subRegister} >Registrarte es gratis :V</p>
           <input
