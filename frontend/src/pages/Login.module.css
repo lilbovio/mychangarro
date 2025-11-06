@@ -6,10 +6,23 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   }
+
+  .logoContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.logo {
+  width: 200px;      /* Ajusta el tamaño a gusto */
+  height: auto;
+  object-fit: contain;
+}
+
   
   .imageSection {
     flex: 1;
-    background: url('../assets/login_img.jpg') no-repeat center center;
+    background: url('../assets/señoraLogin.jpg') no-repeat center center #000000;
     background-size: cover;
     position: relative;
   }
