@@ -11,8 +11,15 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={styles.navleft}>
-      <img src={logo} alt="Logo" className="logo" />
+      <div className={styles.navleft}>  
+        {/* aqui al tocar la imagen podran regresar al inicio */}
+      <img 
+        src={logo} 
+        alt="Logo" 
+        className="logo" 
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        style={{ cursor: 'pointer' }}
+      />
       <h3><span className={styles.morado}>Mi</span><span className={styles.verde}>C</span>hangarro</h3>
       </div>
       <div className={styles.navright}>
