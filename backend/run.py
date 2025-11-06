@@ -8,5 +8,3 @@ CORS(app)
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-# hola cp como estamos

@@ -1,6 +1,6 @@
 import axios from 'axios';
 const API = axios.create({
-  baseURL: 'https://mychangarro.onrender.com/api'
+  baseURL: 'http://localhost:5000/api'
 });
 export const login = (credentials) => API.post('/login', credentials);
 export const getBusinesses = (categoria) => API.get(`/businesses?categoria=${categoria}`);
