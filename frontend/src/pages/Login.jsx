@@ -26,7 +26,7 @@ function Login() {
         {/* Aquí va tu imagen */}
       </div>
       <form onSubmit={handleSubmit} className={styles.loginForm}>
-        <div><h1>MiChangarro</h1></div>
+        {/* <div className={}><h1>MiChangarro</h1></div> */}
         <div className={styles.logoContainer}>
         <img src={logo} alt="Logo" className={styles.logo} /> {/*  AQUI PUSE EL LOGO DENTRO DEL FORM */}
       </div>
