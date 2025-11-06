@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Register.css'; 
+import style from './Register.module.css'; 
+import home from "../assets/home.svg"; /* !!!!!!! */
 
 function Register() {
   const [form, setForm] = useState({ usuario: '', contrasena: '' });
@@ -19,40 +20,49 @@ function Register() {
   };
 
   return (
-    <div className="register-container">
-      <form onSubmit={handleSubmit}>
-        <h2 className='tittleRegister'><span className='morado'>Re</span><span className='verde'>g</span>istro</h2>
-        <p className='subRegister' >Registrarte es gratis :V</p>
-        <input
-          type="text"
-          placeholder="First Name*"
-          value={form.usuario}
-          onChange={(e) => setForm({ ...form, usuario: e.target.value })}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Last Name*"
-          value={form.usuario}
-          onChange={(e) => setForm({ ...form, usuario: e.target.value })}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email Address*"
-          value={form.usuario}
-          onChange={(e) => setForm({ ...form, usuario: e.target.value })}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password*"
-          value={form.contrasena}
-          onChange={(e) => setForm({ ...form, contrasena: e.target.value })}
-          required
-        />
-        <button type="submit">Registrarse</button>
-      </form>
+    <div>
+      <nav className={style.navBar}>
+        <div className={style.navLogo} onClick={() => navigate('/')}>
+          <img src={home} alt="" />
+          <span>Home</span>
+        </div>
+        <div className={style.navBrand}><span className={style.morado}>Mi</span><span className={style.verde}>C</span>hangarro</div>
+      </nav>  
+      <div className={style.registerContainer}>
+        <form onSubmit={handleSubmit}>
+          <h2 className={style.tittleRegister}><span className={style.morado}>Re</span><span className={style.verde}>g</span>istro</h2>
+          <p className={style.subRegister} >Registrarte es gratis :V</p>
+          <input
+            type="text"
+            placeholder="First Name*"
+            value={form.usuario}
+            onChange={(e) => setForm({ ...form, usuario: e.target.value })}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Last Name*"
+            value={form.usuario}
+            onChange={(e) => setForm({ ...form, usuario: e.target.value })}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email Address*"
+            value={form.usuario}
+            onChange={(e) => setForm({ ...form, usuario: e.target.value })}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password*"
+            value={form.contrasena}
+            onChange={(e) => setForm({ ...form, contrasena: e.target.value })}
+            required
+          />
+          <button type="submit">Registrarse</button>
+        </form>
+      </div>
     </div>
   );
 }
