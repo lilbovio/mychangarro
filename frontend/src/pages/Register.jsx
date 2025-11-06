@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './Register.css'; 
 
 function Register() {
   const [form, setForm] = useState({ usuario: '', contrasena: '' });
@@ -18,22 +19,41 @@ function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Registro</h2>
-      <input
-        type="text"
-        placeholder="Usuario"
-        onChange={(e) => setForm({ ...form, usuario: e.target.value })}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Contraseña"
-        onChange={(e) => setForm({ ...form, contrasena: e.target.value })}
-        required
-      />
-      <button type="submit">Registrarse</button>
-    </form>
+    <div className="register-container">
+      <form onSubmit={handleSubmit}>
+        <h2 className='tittleRegister'><span className='morado'>Re</span><span className='verde'>g</span>istro</h2>
+        <p className='subRegister' >Registrarte es gratis :V</p>
+        <input
+          type="text"
+          placeholder="First Name*"
+          value={form.usuario}
+          onChange={(e) => setForm({ ...form, usuario: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Last Name*"
+          value={form.usuario}
+          onChange={(e) => setForm({ ...form, usuario: e.target.value })}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email Address*"
+          value={form.usuario}
+          onChange={(e) => setForm({ ...form, usuario: e.target.value })}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password*"
+          value={form.contrasena}
+          onChange={(e) => setForm({ ...form, contrasena: e.target.value })}
+          required
+        />
+        <button type="submit">Registrarse</button>
+      </form>
+    </div>
   );
 }
 
