@@ -7,16 +7,38 @@
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   }
 
+.tittleContainer{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
+}
+
+.tittle{
+  font-size: 30px;
+  color: #000000;
+}
+
+.spanmorado{
+  color: #8b29b9;
+}
+
+.spanverde{
+  color: #40C758;
+}
+
   .logoContainer {
   display: flex;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin-top: 0;
+  margin-bottom: 0.2rem;
 }
 
 .logo {
   width: 200px;      /* Ajusta el tamaño a gusto */
-  height: auto;
+  height: 200px;
   object-fit: contain;
+  margin: auto;
 }
 
   
