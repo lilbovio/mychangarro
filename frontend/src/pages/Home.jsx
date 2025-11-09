@@ -8,7 +8,34 @@ import styles from './Home.module.css';
 import defaultUserImage from '../assets/default-user.jpg';
 
 function Home() {
-  const user = JSON.parse(localStorage.getItem('user')) || {};
+  // lectura robusta del localStorage (soporta cadenas no JSON)
+  const rawUser = localStorage.getItem('user');
+  let user = {};
+  try {
+    user = rawUser ? JSON.parse(rawUser) : {};
+  } catch {
+    // si era un string plano (p.ej. el correo), úsalo como usuario
+    user = rawUser ? { usuario: rawUser } : {};
+  }
+  console.log('USER EN HOME:', user, 'RAW:', rawUser, 'KEYS:', Object.keys(user));
+
+  // intenta primero first/last, luego nombre, luego correo
+  const firstName =
+    user.first_name || user.firstName || '';
+
+  const lastName =
+    user.last_name || user.lastName || user.apellido || user.apellidos || '';
+
+  const displayName =
+    (firstName || lastName)
+      ? `${firstName} ${lastName}`.trim()
+      : (user.nombre || user.usuario || user.email || user.correo || 'Usuario');
+
+  const displayDescription =
+    user.descripcion || user.description || 'Bienvenido a MyChangarro';
+
+  const displayImage =
+    user.imagen || user.image_url || defaultUserImage;
   const [category, setCategory] = useState('comida');
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -43,7 +70,7 @@ function Home() {
       <Header />
       <div className={styles.userInfo}> 
         <img 
-          src={user.image_url || defaultUserImage} 
+          src={displayImage}
           alt="User profile" 
           className={styles.userImage}
           onError={(e) => {
@@ -52,7 +79,7 @@ function Home() {
           }}
         />
         <div className={styles.userDetails}>
-          <h2>{user.name || 'Usuario'}</h2>
+          <h2>{displayName}</h2>
           <p>{user.description || 'Bienvenido a MyChangarro'}</p>
         </div>
       </div>
@@ -107,3 +134,4 @@ function Home() {
 }
 
 export default Home;
+
