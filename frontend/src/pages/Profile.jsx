@@ -57,14 +57,19 @@ const [user, setUser] = useState({
   
       const token = localStorage.getItem('token');
       const userId = JSON.parse(localStorage.getItem('user')).id;
-      
-      const response = await fetch('/api/profile', { // Verifica la URL 
+
+      const headers = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      if (userId) {
+        headers['X-User-ID'] = userId;
+      }
+
+      const response = await fetch('http://localhost:5000/api/profile', {
         method: 'PUT',
         body: formData,
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'X-User-ID': userId 
-        }
+        headers
       });
   
       const data = await response.json();

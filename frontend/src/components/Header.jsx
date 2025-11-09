@@ -7,6 +7,8 @@ import styles from './Header.module.css';
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const isLoggedIn = !!storedUser;
 
 
   return (
@@ -32,12 +34,37 @@ function Header() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </form>
-        <div className={styles.loginButton}>
-        <Link to="" className="nav-link">Login</Link>
-        </div>
-        <div className={styles.registerButton}>
-        <Link to="/register" className="nav-link nav-link-register">Register</Link>
-        </div>
+        {isLoggedIn ? (
+          <>
+            <div className={styles.loginButton}>
+              <Link to="/profile" className="nav-link">
+                Mi perfil
+              </Link>
+            </div>
+            <div className={styles.registerButton}>
+              <Link
+                to="/"
+                className="nav-link nav-link-register"
+                onClick={() => {
+                  localStorage.removeItem('user');
+                }}
+              >
+                Cerrar sesión
+              </Link>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className={styles.loginButton}>
+              <Link to="/login" className="nav-link">Login</Link>
+            </div>
+            <div className={styles.registerButton}>
+              <Link to="/register" className="nav-link nav-link-register">
+                Register
+              </Link>
+            </div>
+          </>
+        )}
       </div>
       
     </header>
