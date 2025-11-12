@@ -1,0 +1,38 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# --- Entornos virtuales ---
+env/
+venv/
+
+# --- Archivos temporales ---
+*.log
+*.tmp
+*.swp
+*.bak
+
+# --- Archivos de configuración local ---
+*.env
+*.local
+
+# --- Node / Frontend ---
+node_modules/
+dist/
+.vite/
+.cache/
+*.tsbuildinfo
+
+# --- Archivos de sistema ---
+.DS_Store
+Thumbs.db
+
+# --- Compilaciones ---
+*.exe
+*.dll
+*.so
+*.out
+*.class
