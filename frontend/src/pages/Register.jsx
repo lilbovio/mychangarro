@@ -173,6 +173,7 @@ function Register() {
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
+            className={style.mostrarContraseña}
           >
             {showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
           </button>
@@ -186,9 +187,11 @@ function Register() {
             autoComplete="new-password"
             required
           />
+          {/*  TANTO AQUI Y EN EL OTRO button de contraseña implemente la clase nueva */}
           <button
             type="button"
             onClick={() => setShowConfirmPassword(prev => !prev)}
+            className={style.mostrarContraseña}
           >
             {showConfirmPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
           </button>

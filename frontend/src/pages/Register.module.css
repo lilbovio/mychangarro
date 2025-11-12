@@ -139,6 +139,27 @@ form button {
   letter-spacing: 0.5px;
 }
 
+/* * Igualmente que en login este apartado se modifico el mostrar contraseña */
+.mostrarContraseña{
+  background: none !important;
+  background-color: transparent !important;
+  color: #8b29b9 !important;
+  padding: 0.5rem !important;
+  border: none !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+  text-decoration: underline !important;
+  margin-bottom: 1rem !important;
+  text-align: right !important;
+  align-self: flex-end !important;
+}
+
+/* *Con esto se supone que se haga mas oscurito jijijij viva donny */
+.mostrarContraseña:hover {
+  color: #6a1f8f !important;
+  background-color: #8b29b90d !important;
+}
+
 form button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
