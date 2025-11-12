@@ -8,49 +8,95 @@ import styles from './Home.module.css';
 import defaultUserImage from '../assets/default-user.jpg';
 
 function Home() {
-  // lectura robusta del localStorage (soporta cadenas no JSON)
-  const rawUser = localStorage.getItem('user');
-  let user = {};
-  try {
-    user = rawUser ? JSON.parse(rawUser) : {};
-  } catch {
-    // si era un string plano (p.ej. el correo), úsalo como usuario
-    user = rawUser ? { usuario: rawUser } : {};
-  }
-  console.log('USER EN HOME:', user, 'RAW:', rawUser, 'KEYS:', Object.keys(user));
-
-  // intenta primero first/last, luego nombre, luego correo
-  const firstName =
-    user.first_name || user.firstName || '';
-
-  const lastName =
-    user.last_name || user.lastName || user.apellido || user.apellidos || '';
-
-  const displayName =
-    (firstName || lastName)
-      ? `${firstName} ${lastName}`.trim()
-      : (user.nombre || user.usuario || user.email || user.correo || 'Usuario');
-
-  const displayDescription =
-    user.descripcion || user.description || 'Bienvenido a MyChangarro';
-
-  const displayImage =
-    user.imagen || user.image_url || defaultUserImage;
+  const [userProfile, setUserProfile] = useState({
+    nombre: 'Usuario',
+    descripcion: 'Bienvenido a MyChangarro',
+    imagen: defaultUserImage
+  });
   const [category, setCategory] = useState('comida');
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    loadUserProfile();
+    loadBusinesses();
+  }, []);
+
+  useEffect(() => {
     loadBusinesses();
   }, [category]);
+
+  const loadUserProfile = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const currentUser = JSON.parse(localStorage.getItem('user'));
+      
+      if (!currentUser || !currentUser.id) {
+        return;
+      }
+
+      const headers = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      headers['X-User-ID'] = currentUser.id;
+
+      const response = await fetch('http://localhost:5000/api/profile', {
+        method: 'GET',
+        headers
+      });
+
+      if (response.ok) {
+        const userData = await response.json();
+        console.log('Perfil cargado en Home:', userData);
+        
+        const imageUrl = userData.imagen 
+          ? `http://localhost:5000${userData.imagen}` 
+          : defaultUserImage;
+        
+        setUserProfile({
+          nombre: userData.nombre || currentUser.usuario || 'Usuario',
+          descripcion: userData.descripcion || 'Bienvenido a MyChangarro',
+          imagen: imageUrl
+        });
+        
+        localStorage.setItem('user', JSON.stringify({
+          ...currentUser,
+          nombre: userData.nombre,
+          descripcion: userData.descripcion,
+          imagen: userData.imagen
+        }));
+      } else {
+        loadUserFromLocalStorage(currentUser);
+      }
+    } catch (error) {
+      console.error('Error cargando perfil en Home:', error);
+      const currentUser = JSON.parse(localStorage.getItem('user'));
+      if (currentUser) {
+        loadUserFromLocalStorage(currentUser);
+      }
+    }
+  };
+
+  const loadUserFromLocalStorage = (user) => {
+    const imageUrl = user.imagen 
+      ? `http://localhost:5000${user.imagen}` 
+      : defaultUserImage;
+    
+    setUserProfile({
+      nombre: user.nombre || user.first_name || user.usuario || user.email || 'Usuario',
+      descripcion: user.descripcion || user.description || 'Bienvenido a MyChangarro',
+      imagen: imageUrl
+    });
+  };
 
   const loadBusinesses = async () => {
     setLoading(true);
     try {
       const res = await getBusinesses(category);
-      console.log('Businesses data:', res.data); // Para depuración
-      res.data.forEach(business => console.log(business));
+      console.log('Businesses data:', res.data);
+      
       if (res.data && Array.isArray(res.data)) {
         setBusinesses(res.data);
       } else {
@@ -70,17 +116,18 @@ function Home() {
       <Header />
       <div className={styles.userInfo}> 
         <img 
-          src={displayImage}
+          src={userProfile.imagen}
           alt="User profile" 
           className={styles.userImage}
           onError={(e) => {
+            console.error('Error cargando imagen en Home');
             e.target.onerror = null; 
-            e.target.src = defaultUserImage; // Ruta de la imagen por defecto
+            e.target.src = defaultUserImage;
           }}
         />
         <div className={styles.userDetails}>
-          <h2>{displayName}</h2>
-          <p>{user.description || 'Bienvenido a MyChangarro'}</p>
+          <h2>{userProfile.nombre}</h2>
+          <p>{userProfile.descripcion}</p>
         </div>
       </div>
 
@@ -134,4 +181,3 @@ function Home() {
 }
 
 export default Home;
-

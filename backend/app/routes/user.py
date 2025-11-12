@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 from datetime import datetime
 from app.db import get_db
-import logging  # Importa el módulo logging
+import logging
 
 user_bp = Blueprint('user', __name__)
 
@@ -13,8 +13,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 MAX_FILE_SIZE_MB = 2
 MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024
 
-# Configura el logging
-logging.basicConfig(level=logging.DEBUG)  # Establece el nivel de logging a DEBUG para ver más detalles
+logging.basicConfig(level=logging.DEBUG)
 
 
 def allowed_file(filename):
@@ -23,17 +22,15 @@ def allowed_file(filename):
 
 @user_bp.route('/profile', methods=['PUT'])
 def update_profile():
-    logging.debug("Entrando a la función update_profile")  # Agrega logging al inicio de la función
+    logging.debug("Entrando a la función update_profile")
     conn = get_db()
     cursor = conn.cursor(dictionary=True)
 
     try:
-        # Obtener datos del request
         data = request.form
         user_id = request.headers.get('X-User-ID')
-        logging.debug(f"user_id recibido: {user_id}") # Imprime el ID de usuario
+        logging.debug(f"user_id recibido: {user_id}")
 
-        # Validar datos mínimos
         if not user_id:
             logging.warning("ID de usuario no proporcionado")
             return jsonify({'error': 'ID de usuario requerido'}), 400
@@ -61,10 +58,15 @@ def update_profile():
         # Procesar imagen si existe
         if 'imagen' in request.files:
             file = request.files['imagen']
-            if file:
+            if file and file.filename:  # Verifica que el archivo tenga nombre
                 logging.debug(f"Nombre del archivo recibido: {file.filename}")
-                logging.debug(f"Tamaño del archivo recibido: {file.content_length}")
-                if file.content_length > MAX_FILE_SIZE_BYTES:
+                
+                # Verificar tamaño
+                file.seek(0, os.SEEK_END)
+                file_size = file.tell()
+                file.seek(0)  # Regresar al inicio
+                
+                if file_size > MAX_FILE_SIZE_BYTES:
                     logging.error(f"Tamaño del archivo excede el límite de {MAX_FILE_SIZE_MB}MB")
                     return jsonify({'error': f'El tamaño del archivo excede los {MAX_FILE_SIZE_MB}MB'}), 400
 
@@ -88,33 +90,67 @@ def update_profile():
             cursor.execute(update_query, tuple(update_values))
             conn.commit()
 
-            # Obtener usuario actualizado
-            cursor.execute("SELECT * FROM usuarios WHERE id = %s", (user_id,))
-            updated_user = cursor.fetchone()
-            logging.debug(f"Usuario actualizado: {updated_user}")
-            
-            response_data = {
-                'message': 'Perfil actualizado exitosamente',
-                'user': {
-                    'id': updated_user['id'],
-                    'name': updated_user['nombre'],
-                    'description': updated_user['descripcion'],
-                    'image_url': updated_user['imagen_url']
-                }
+        # SIEMPRE obtener usuario actualizado (incluso si no hubo cambios)
+        cursor.execute("SELECT * FROM usuarios WHERE id = %s", (user_id,))
+        updated_user = cursor.fetchone()
+        logging.debug(f"Usuario actualizado: {updated_user}")
+        
+        # ⭐ IMPORTANTE: Devolver los nombres de campos que el frontend espera
+        response_data = {
+            'message': 'Perfil actualizado exitosamente',
+            'user': {
+                'id': updated_user['id'],
+                'nombre': updated_user['nombre'],  # ← Cambiado de 'name' a 'nombre'
+                'descripcion': updated_user['descripcion'],  # ← Cambiado de 'description'
+                'imagen': updated_user['imagen_url']  # ← Cambiado de 'image_url' a 'imagen'
             }
-            logging.debug(f"Respuesta JSON: {response_data}")
-            return jsonify(response_data), 200
-        else:
-            logging.warning("No hay datos para actualizar")
-            response_data = {'message': 'No hay datos para actualizar', 'user': user} # Añadido 'user'
-            logging.debug(f"Respuesta JSON: {response_data}")
-            return jsonify(response_data), 200  # Devuelve 200 OK, pero sin cambios
+        }
+        logging.debug(f"Respuesta JSON: {response_data}")
+        return jsonify(response_data), 200
 
     except Exception as e:
         conn.rollback()
         error_message = str(e)
-        logging.error(f"Error al actualizar el perfil: {error_message}")  # Loguea el error
+        logging.error(f"Error al actualizar el perfil: {error_message}")
         return jsonify({'error': error_message}), 500
+    finally:
+        cursor.close()
+        conn.close()
+
+
+# ⭐ NUEVA RUTA: Obtener perfil del usuario
+@user_bp.route('/profile', methods=['GET'])
+def get_profile():
+    """Obtiene el perfil del usuario actual"""
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        user_id = request.headers.get('X-User-ID')
+        logging.debug(f"GET profile - user_id: {user_id}")
+
+        if not user_id:
+            return jsonify({'error': 'ID de usuario requerido'}), 400
+
+        cursor.execute("SELECT * FROM usuarios WHERE id = %s", (user_id,))
+        user = cursor.fetchone()
+
+        if not user:
+            return jsonify({'error': 'Usuario no encontrado'}), 404
+
+        # Devolver datos con nombres consistentes
+        response_data = {
+            'id': user['id'],
+            'nombre': user['nombre'],
+            'descripcion': user['descripcion'],
+            'imagen': user['imagen_url']
+        }
+        
+        return jsonify(response_data), 200
+
+    except Exception as e:
+        logging.error(f"Error al obtener el perfil: {str(e)}")
+        return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
         conn.close()
