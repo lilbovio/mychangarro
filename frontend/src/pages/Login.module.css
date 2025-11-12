@@ -41,7 +41,29 @@
   margin: auto;
 }
 
-  
+/* *AQUI MODIFIQUE EL BOTON DE MOSTRAR CONTRASEÑA */
+
+/* ? IMPORTATE GG PAPA FUE MI UNICA SOLUCION XD */
+.mostrarContraseña {
+  background: none !important;
+  background-color: transparent !important;
+  color: #8b29b9 !important;
+  padding: 0.5rem !important;
+  border: none !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+  text-decoration: underline !important;
+  margin-bottom: 1rem !important;
+  text-align: right !important;
+  align-self: flex-end !important;
+}
+
+.mostrarContraseña:hover {
+  color: #6a1f8f !important;
+  background-color: rgba(139, 41, 185, 0.05) !important;
+}
+
+
   .imageSection {
     flex: 1;
     background: url('../assets/señoraLogin.jpg') no-repeat center center #000000;
@@ -68,6 +90,7 @@
     justify-content: center;
     background-color: white;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
   }
   
   .loginForm h2 {
@@ -110,29 +133,24 @@
   }
   
   
-  .loginForm button[type="button"] {
-    background-color: transparent;
-    color: #fff;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .loginForm button[type="button"]:hover {
-    background-color: #f8f9fa;
-    border-color: #40C758;
-    color: #40C758;
-  }
+  .loginForm button[type="button"]:not(.mostrarContraseña) {
+  background-color: transparent ;
+  color: #666;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-  
-  /* Efectos adicionales */
-  .loginForm {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  
+.loginForm button[type="button"]:not(.mostrarContraseña):hover {
+  background-color: transparent;
+  border-color: #40C758;
+  color: #40C758;
+}
+
+
   @keyframes fadeIn {
     from {
       opacity: 0;

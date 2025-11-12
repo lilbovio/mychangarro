@@ -19,7 +19,7 @@ DB_CONFIG = {
     "host": "127.0.0.1",
     "port": 3306,
     "user": "root",
-    "password": "Bovio123",
+    "password": "chispa2.00",
     "database": "negocios_db"
 }
 

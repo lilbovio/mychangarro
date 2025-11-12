@@ -20,7 +20,7 @@ function Header() {
         alt="Logo" 
         className="logo" 
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'pointer' }} 
       />
       <h3><span className={styles.morado}>Mi</span><span className={styles.verde}>C</span>hangarro</h3>
       </div>

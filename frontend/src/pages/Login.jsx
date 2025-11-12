@@ -82,12 +82,16 @@ function Login() {
           onChange={e => setForm({ ...form, contrasena: e.target.value })}
           required
         />
+
+        {/* Boton de mostrar Contraseña */}
         <button
           type="button"
+          className={styles.mostrarContraseña}
           onClick={() => setShowPassword(prev => !prev)}
         >
           {showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
         </button>
+        
         <button type="submit" disabled={loading}>
           {loading ? 'Iniciando...' : 'Iniciar sesión'}
         </button>

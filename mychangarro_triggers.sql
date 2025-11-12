@@ -87,7 +87,7 @@ BEGIN
 END//
 DELIMITER ;
 
--- Trigger AFTER DELETE en negocios
+-- Trigger  AFTER DELETE en negocios
 DELIMITER //
 CREATE TRIGGER trg_negocios_after_delete
 AFTER DELETE ON negocios
