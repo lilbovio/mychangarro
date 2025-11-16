@@ -32,6 +32,7 @@ function BusinessReview() {
   };
 
   return (
+    <div>
     <div className={styles.reviewsContainer}>
       <Header />
       <h2 className={styles.reviewsTitle}>Deja tu reseña</h2>
@@ -82,7 +83,8 @@ function BusinessReview() {
           Enviar reseña
         </button>
       </form>
-      <Footer />
+    </div>
+          <Footer />
     </div>
   );
 }
