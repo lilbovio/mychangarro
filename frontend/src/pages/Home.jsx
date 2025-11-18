@@ -112,6 +112,7 @@ function Home() {
   };
 
   return (
+    <div> {/* Div para el footer */}
     <div className={styles.container}>
       <Header />
       <div className={styles.userInfo}> 
@@ -175,6 +176,8 @@ function Home() {
         </div>
       )}
 
+      
+    </div>
       <Footer />
     </div>
   );
