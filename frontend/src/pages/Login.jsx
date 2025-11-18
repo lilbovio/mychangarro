@@ -1,22 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/api';
 import styles from './Login.module.css'; 
-import logo from "../assets/logo.png";
-
+import logo from "../assets/imagenlogin.jpg";
+import img1 from '../assets/login2.jpg';
+import img2 from '../assets/login3.jpg';
+import img3 from '../assets/senoraLogin.jpg';
+import img4 from '../assets/loginFresas.jpg';
 
 function Login() {
   const [form, setForm] = useState({ usuario: '', contrasena: '' });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  // Carrusel simple de 3 imágenes con cambio cada 3s
+  const images = [img1, img2, img3, img4];
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIdx(i => (i + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(id);
+  }, [images.length]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validar formato básico de correo
     if (!form.usuario.includes('@')) {
-      alert('Ingresa un correo electrónico válido que contenga "@".');
+      alert('⚠️Advertencia⚠️ Ingresa un correo electrónico válido que contenga "@".');
       return;
     }
 
@@ -24,7 +37,7 @@ function Login() {
     // mínimo 7 caracteres, al menos 1 mayúscula y 1 número.
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{7,}$/;
     if (!passwordRegex.test(form.contrasena)) {
-      alert('La contraseña debe tener al menos 7 caracteres, una mayúscula y un número.');
+      alert('⚠️Advertencia⚠️ La contraseña debe tener al menos 7 caracteres, una mayúscula y un número.');
       return;
     }
 
@@ -38,7 +51,7 @@ function Login() {
 
       navigate('/home');
     } catch (err) {
-      alert('Credenciales incorrectas');
+      alert('❗ERROR❗Credenciales incorrectas');
     } finally {
       setLoading(false);
     }
@@ -47,7 +60,7 @@ function Login() {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.imageSection}>
-        {/* Aquí va tu imagen */}
+        <img key={idx} src={images[idx]} alt="" className={styles.bgImg} />
       </div>
       <form
         onSubmit={handleSubmit}

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import style from './Register.module.css';
-import home from "../assets/home.svg";
+import home from '../assets/home.svg';
+import styles from './Register.module.css';
+
 
 function Register() {
   // Estado del formulario principal
@@ -22,6 +23,8 @@ function Register() {
 
   const navigate = useNavigate();
 
+
+
   // Manejar cambios de los inputs principales
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,31 +43,31 @@ function Register() {
 
     // Validar nombre y apellido
     if (!nameRegex.test(form.firstName) || !nameRegex.test(form.lastName)) {
-      alert('El nombre y el apellido solo pueden contener letras y espacios.');
+      alert('⚠️Advertencia⚠️ Nombre y Apellido solo pueden contener letras y espacios.');
       return;
     }
 
     // Validar formato b?sico de correo
     if (!form.email.includes('@')) {
-      alert('Ingresa un correo electr?nico v?lido que contenga "@".');
+      alert('⚠️Advertencia⚠️ Ingresa un correo electrónico válido que contenga "@".');
       return;
     }
 
     // Validar complejidad de la contrase?a
     if (!passwordRegex.test(form.contrasena)) {
-      alert('La contrase?a debe tener al menos 7 caracteres, una may?scula y un n?mero.');
+      alert('⚠️Advertencia⚠️ La contraseña debe tener al menos 7 caracteres, una mayúscula y un número.');
       return;
     }
 
     // Validar coincidencia de email
     if (form.email !== confirmEmail) {
-      alert('Los correos no coinciden');
+      alert('⚠️Advertencia⚠️ Los correos no coinciden');
       return;
     }
 
     // Validar coincidencia de contrase?a
     if (form.contrasena !== confirmContrasena) {
-      alert('Las contrase?as no coinciden');
+      alert('⚠️Advertencia⚠️ Las contraseñas no coinciden');
       return;
     }
 
@@ -79,51 +82,51 @@ function Register() {
         last_name: form.lastName,
       });
 
-      alert('Registro exitoso');
+      alert('Registro exitoso✅');
       navigate('/');
     } catch (err) {
-      alert(err.response?.data?.message || 'Error al registrar');
+      alert(err.response?.data?.message || '⚠️Error al registrar⚠️');
     } finally {
       setLoading(false);
     }
   };
-
-
+ 
   return (
     <div>
-      <nav className={style.navBar}>
-        <div className={style.navLogo} onClick={() => navigate('/')}>
-          <img className={style.imgHome} src={home} alt="" />
+      <nav className={styles.navBar}>
+        <div className={styles.navLogo} onClick={() => navigate('/')}>
+          <img className={styles.imgHome} src={home} alt="" />
           <span>
-            <span className={style.morado}>Mi</span>
-            <span className={style.verde}>C</span>hangarro
+            <span className={styles.morado}>Mi</span>
+            <span className={styles.verde}>C</span>hangarro
           </span>
         </div>
-        <div className={style.navBrand}>
-          <span className={style.morado}>Mi</span>
-          <span className={style.verde}>C</span>hangarro
+        <div className={styles.navBrand}>
+          <span className={styles.morado}>Mi</span>
+          <span className={styles.verde}>C</span>hangarro
         </div>
       </nav>
 
-      <div className={style.registerContainer}>
+      <div className={styles.registerContainer}>
+        
         <form
-          className={style.formularioRegister}
+          className={styles.formularioRegister}
           onSubmit={handleSubmit}
           autoComplete="off"  // evitar autocompletado molesto
         >
-          <h2 className={style.tittleRegister}>
-            <span className={style.morado}>Re</span>
-            <span className={style.verde}>g</span>istro
+          <h2 className={styles.tittleRegister}>
+            <span className={styles.morado}>Re</span>
+            <span className={styles.verde}>g</span>istro
           </h2>
-          <p className={style.subRegister}>
-            ¡Hola! Añade tu registro para poder continuar
+          <p className={styles.subRegister}>
+            ¡Hola! Regístrate para continuar
           </p>
 
           {/* First Name */}
           <input
             type="text"
             name="firstName"
-            placeholder="First Name*"
+            placeholder="Nombre"
             value={form.firstName}
             onChange={handleChange}
             required
@@ -133,7 +136,7 @@ function Register() {
           <input
             type="text"
             name="lastName"
-            placeholder="Last Name*"
+            placeholder="Apellido"
             value={form.lastName}
             onChange={handleChange}
             required
@@ -143,7 +146,7 @@ function Register() {
           <input
             type="email"
             name="email"
-            placeholder="Email Address*"
+            placeholder="Correo electrónico"
             value={form.email}
             onChange={handleChange}
             autoComplete="off"   // evitar que el navegador meta el correo viejo
@@ -153,7 +156,7 @@ function Register() {
           {/* Confirmar Email */}
           <input
             type="email"
-            placeholder="Vuelve a escribir tu Email*"
+            placeholder="Vuelve introducir tu correo electrónico"
             value={confirmEmail}
             onChange={(e) => setConfirmEmail(e.target.value)}
             autoComplete="off"
@@ -164,7 +167,7 @@ function Register() {
           <input
             type={showPassword ? 'text' : 'password'}
             name="contrasena"
-            placeholder="Password*"
+            placeholder="Contraseña"
             value={form.contrasena}
             onChange={handleChange}
             autoComplete="new-password"
@@ -173,7 +176,7 @@ function Register() {
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            className={style.mostrarContraseña}
+            className={styles.mostrarContraseña}
           >
             {showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
           </button>
@@ -181,7 +184,7 @@ function Register() {
           {/* Confirmar Password */}
           <input
             type={showConfirmPassword ? 'text' : 'password'}
-            placeholder="Vuelve a escribir tu Password*"
+            placeholder="Vuelve a introducir tu contraseña"
             value={confirmContrasena}
             onChange={(e) => setConfirmContrasena(e.target.value)}
             autoComplete="new-password"
@@ -191,7 +194,7 @@ function Register() {
           <button
             type="button"
             onClick={() => setShowConfirmPassword(prev => !prev)}
-            className={style.mostrarContraseña}
+            className={styles.mostrarContraseña}
           >
             {showConfirmPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
           </button>
@@ -206,3 +209,4 @@ function Register() {
 }
 
 export default Register;
+

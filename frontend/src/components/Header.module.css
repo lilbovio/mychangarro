@@ -1,4 +1,5 @@
-/* *VOVIO AQUI MODIFIQUE EL HOME Y LE PUSE UNA BARRA SUPERIOR */
+/* *VOVIO AQUI MODIFIQUE EL HOME Y LE PUSE UNA BARRA SUPERIOR vovio te amo*/
+/* vovio.com*/
 
 .header {
   position: fixed;
@@ -97,8 +98,8 @@
 }
 
 .loginButton a,.registerButton a {
-  background: linear-gradient(135deg, #000 0%, #8b29b8 100%);
-  color: #000;
+  background: linear-gradient(135deg, #000000 0%, #8b29b8 100%); 
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -144,4 +145,36 @@
     font-size: 14px;
     padding: 8px 15px;
   }
+}
+/* Botón Inicio */
+.homeBtn {
+  padding: 10px 30px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  background: linear-gradient(90deg, #1a0b2e 0%, #5b14b8 50%, #7b2cff 100%);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(123, 44, 255, 0.35);
+  transition: transform 0.08s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  margin: 0 10px; /* separa del logo y del texto */
+}
+
+.homeBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(123, 44, 255, 0.45);
+  opacity: 0.95;
+}
+
+.homeBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(123, 44, 255, 0.35);
+}
+
+/* Asegura alineación si tu contenedor no es flex */
+.navleft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
