@@ -1,153 +1,136 @@
-/* Contenedor principal */
 .reviewsContainer {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: calc(100vh - 200px);
+}
+
+.businessHeader {
+  margin-bottom: 30px;
+}
+
+.backButton {
+  background: #f0f0f0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 15px;
+}
+
+.backButton:hover {
+  background: #e0e0e0;
+}
+
+.businessNameTitle {
+  color: #667eea;
+  font-size: 1.3rem;
+  margin: 10px 0;
+}
+
+.reviewsTitle {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #667eea;
+}
+
+.reviewForm {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formGroup {
+  margin-bottom: 25px;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.charCount {
+  display: block;
+  text-align: right;
+  color: #999;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .reviewsContainer {
+    padding: 20px 15px;
   }
-  
-  /* Título */
+
   .reviewsTitle {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    position: relative;
-    padding-bottom: 0.5rem;
+    font-size: 1.5rem;
   }
-  
-  .reviewsTitle::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(to right, #3498db, #9b59b6);
-  }
-  
-  /* Formulario de reseña */
+
   .reviewForm {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 8px;
+    padding: 20px;
   }
-  
-  .formGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .formGroup label {
-    font-weight: 600;
-    color: #34495e;
-  }
-  
-  .formGroup select,
-  .formGroup textarea {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-  
-  .formGroup select:focus,
-  .formGroup textarea:focus {
-    border-color: #3498db;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-  }
-  
-  .textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-  
-  .submitButton {
-    background: linear-gradient(to right, #3498db, #9b59b6);
-    color: white;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .submitButton:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-  }
-  
-  /* Lista de reseñas */
-  .reviewsList {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .reviewCard {
-    padding: 1.5rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid #3498db;
-  }
-  
-  .reviewHeader {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-  }
-  
-  .reviewAuthor {
-    font-weight: 600;
-    color: #2c3e50;
-  }
-  
-  .reviewRating {
-    color: #f39c12;
-    font-weight: bold;
-  }
-  
-  .reviewDate {
-    font-size: 0.8rem;
-    color: #7f8c8d;
-    margin-bottom: 0.5rem;
-  }
-  
-  .reviewContent {
-    color: #34495e;
-    line-height: 1.6;
-  }
-  
-  /* Estrellas de rating */
-  .ratingStars {
-    color: #f39c12;
-    font-size: 1.2rem;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .reviewsContainer {
-      padding: 1.5rem;
-      margin: 1rem;
-    }
-    
-    .reviewsTitle {
-      font-size: 1.5rem;
-    }
-    
-    .reviewForm {
-      padding: 1rem;
-    }
-  }
+}

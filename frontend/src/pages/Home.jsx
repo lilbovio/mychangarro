@@ -158,7 +158,7 @@ function Home() {
               <BusinessCard 
                 key={business.id} 
                 business={business}
-                onClick={() => navigate(`/business/${business.id}`)}
+                onClick={() => navigate(`/review/${business.id}`)}
               />
             ))
           ) : (

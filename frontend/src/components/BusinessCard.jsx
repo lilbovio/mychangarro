@@ -3,12 +3,16 @@ import defaultBusinessImage from '../assets/default-business.png';
 
 function BusinessCard({ business }) {
   const navigate = useNavigate();
-  console.log('Negocio recibido en BusinessCard:', business);
 
   return (
-    <div className="business-card" onClick={() => navigate(`/review/${business.id}`)}>
-      <img 
-        src={business.imagen || defaultBusinessImage } 
+    <div 
+      className="business-card" 
+      onClick={() => navigate(`/review/${business.id}`)}
+      style={{ cursor: 'pointer' }}
+      
+    >
+      <img
+        src={business.imagen || defaultBusinessImage}
         alt={business.nombre}
         onError={(e) => {
           e.target.onerror = null;
