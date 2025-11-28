@@ -13,7 +13,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   // Carrusel simple de 3 imágenes con cambio cada 3s
-  const images = [img1, img2, img3, img4];
+  const images = [img1, img2, img3];
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
