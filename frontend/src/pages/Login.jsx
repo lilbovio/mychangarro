@@ -6,7 +6,6 @@ import logo from "../assets/imagenlogin.jpg";
 import img1 from '../assets/login2.jpg';
 import img2 from '../assets/login3.jpg';
 import img3 from '../assets/senoraLogin.jpg';
-import img4 from '../assets/loginFresas.jpg';
 
 function Login() {
   const [form, setForm] = useState({ usuario: '', contrasena: '' });
