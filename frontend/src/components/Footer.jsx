@@ -14,10 +14,10 @@ function Footer() {
           <h3>MiChangarro</h3>
           <p>Tu plataforma de negocios locales</p>
           <div className={styles.socialLinks}>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/victor.ho.931946" target="_blank" rel="noopener noreferrer">
             <img src={facebookLogo} alt="Facebook" />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/fernando-bovio-vallejo-339174266/" target="_blank" rel="noopener noreferrer">
               <img src={xLogo} alt="X" />
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
@@ -32,7 +32,6 @@ function Footer() {
             <li><Link to="/home">Home</Link></li>
             <li><Link to="/profile">Perfil</Link></li>
             <li><Link to="/review">Reseñas</Link></li>
-            <li><Link to="/best">Mejores</Link></li>
           </ul>
         </div>
 

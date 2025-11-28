@@ -16,6 +16,15 @@
   padding: 0 30px;
 }
 
+/* * Dos nuevas clases para ocultar la barrita de arriba */
+.headerHidden {
+  transform: translateY(-100%);
+}
+
+.headerVisible {
+  transform: translateY(0);
+}
+
 
 .navleft { /* *vovio aqui ES EL CP IZQUIERDO  */
   display: flex;
