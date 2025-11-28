@@ -4,17 +4,50 @@ import { Link } from 'react-router-dom';
 import logo from '@/assets/logosuperiorMC.jpg';
 import styles from './Header.module.css';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react'; /* * Esto para los efectos de la barra */
+
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const isLoggedIn = !!storedUser;
-
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(true);/* Funciones para ocultar la barra mi vovio */
+  const [lastScrollY, setLastScrollY] = useState(0); 
+
+
+  /* =========================Efecto de ocultar la barra================== */
+  useEffect(() => { 
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    
+    if (currentScrollY < 10) {
+      setIsVisible(true);
+    } else if (currentScrollY > lastScrollY) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+    
+    setLastScrollY(currentScrollY);
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+}, [lastScrollY]);
+
+
 
   return (
-    <header className={styles.header}>
+    /* Cambie la etiqueta HEADER para usar el efecto de arriba */
+    <header 
+      className={`${styles.header} ${isVisible ? styles.headerVisible : styles.headerHidden}`}
+      onMouseEnter={() => setIsVisible(true)}
+    >
       <div className={styles.navleft}>
         {/* Logo: ahora también te lleva al home */}
         <img

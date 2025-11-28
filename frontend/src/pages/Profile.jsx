@@ -193,6 +193,7 @@ function Profile() {
   }
 
   return (
+    <div>
     <div className={styles.container}>
       <Header />
       <h2 className={styles.title}>Editar Perfil</h2>
@@ -259,6 +260,7 @@ function Profile() {
         </button>
       </form>
 
+    </div>
       <Footer />
     </div>
   );
